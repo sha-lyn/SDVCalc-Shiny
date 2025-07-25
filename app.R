@@ -13,7 +13,7 @@ ui <- page_sidebar(
     card_header("Profits"),
     "This section will display all of the calculations.",
     card_footer("Stardew Valley Crop Calculator"),
-  )
+  ),
 )
 
 # Define server logic ----
