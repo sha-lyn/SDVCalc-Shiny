@@ -56,14 +56,9 @@ ui <- fluidPage (
      selectInput (
      "crops",
      label = "What crops will you be planting?",
-<<<<<<< HEAD
-     choices 
-    ),
-=======
      choices = NULL,
      width = "100%",
     ), 
->>>>>>> 505bcfc675f7d56d4684583f045a378cefd5f9de
     
     numericInput (
       "seed_count",
@@ -95,8 +90,6 @@ server <- function(input, output, session) {
   
   
 }
-
-
 
 # Run the app ----
 shinyApp(ui = ui, server = server)
