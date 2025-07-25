@@ -42,11 +42,13 @@ ui <- fluidPage (
                         inline = FALSE,
                         width = "100%"
                         ),
-    selectInput (
-     "crops",
-     label = "What crops will you be planting?",
-     choices
-    ),
+    
+# This part is still under construction ----
+#     selectInput (
+#     "crops",
+#     label = "What crops will you be planting?",
+#     choices
+#    ), 
     
     numericInput (
       "Seed Count",
