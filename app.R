@@ -45,7 +45,7 @@ ui <- fluidPage (
     selectInput (
      "crops",
      label = "What crops will you be planting?",
-     choices
+     choices 
     ),
     
     numericInput (
