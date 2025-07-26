@@ -2,11 +2,11 @@ library(shiny)
 library(bslib)
 library(bsicons)
 library(shinyWidgets)
-library(dplyr)
-library(tidyr)
 
-# Load crop data
-source("data_prep.R")
+
+# Load and clean crop data
+crop_data <- read.csv("data/SDVCrops.csv")
+colnames(crop_data) <- tolower(colnames(crop_data))
 
 
 # Define UI ----
@@ -78,8 +78,20 @@ ui <- fluidPage (
 # Define server logic ----
 server <- function(input, output, session) {
   
+  # Reactive expression to filter crops by selected season
+  seasonal_crops <- reactive({
+    req(input$season)  # Ensure season is selected
+    crop_data[crop_data$season == input$season, "crop"]
+  })
+  
+  # Update crop dropdown when season changes
+  observe({
+    updateSelectInput(session, "crops",
+                      choices = seasonal_crops(),
+                      selected = NULL)
+  })
+  
 }
-
 
 # Run the app ----
 shinyApp(ui = ui, server = server)
