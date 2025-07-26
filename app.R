@@ -65,6 +65,8 @@ ui <- fluidPage (
     )
     
   ),
+
+# This is the Results section, where the generated calculations will display.
   card(
     card_header("Profits"),
     "This section will display all of the calculations.",
@@ -90,6 +92,8 @@ server <- function(input, output, session) {
                       choices = seasonal_crops(),
                       selected = NULL)
   })
+  
+  # Seed Count Relationship 
   
 }
 
