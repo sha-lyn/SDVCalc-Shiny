@@ -6,6 +6,8 @@ library(jsonlite)
 
 # Load crop data
 crop_data <- fromJSON("data/SDVCrops.json")
+crop_list <- split(crop_data$Crop, crop_data$Season)
+
 prob_data <- fromJSON ("data/SDVProb.json")
 
 # Create a named list of crops by season
@@ -87,9 +89,8 @@ server <- function(input, output, session) {
                       "crops", 
                       choices = crop_list[[input$season]])
   })
-  
-  
 }
+
 
 # Run the app ----
 shinyApp(ui = ui, server = server)
