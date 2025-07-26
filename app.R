@@ -2,16 +2,9 @@ library(shiny)
 library(bslib)
 library(bsicons)
 library(shinyWidgets)
-library(jsonlite)
 
 # Load crop data
-crop_data <- fromJSON("data/SDVCrops.json")
-crop_list <- split(crop_data$Crop, crop_data$Season)
-
-prob_data <- fromJSON ("data/SDVProb.json")
-
-# Create a named list of crops by season
-crop_list <- lapply(crop_data, names)
+crop_data <- read.csv("data/SDVCrops.csv")
 
 
 # Define UI ----
@@ -23,8 +16,6 @@ ui <- fluidPage (
   title = "Stardew Valley Crop Calculator",
   sidebar = sidebar(
     width = "50%",
-    sliderInput("farmer_level", label = "What is your Farmer skill level?", min = 1, max = 10, value = 1, step = 1, round = FALSE, ticks = TRUE, animate = FALSE, width = '100%', pre = NULL, post = NULL, timeFormat = NULL,
-                timezone = NULL, dragRange = TRUE),
     radioButtons("season", 
                  label = "What Season are you planting in?", 
                  choiceNames = list (
@@ -77,18 +68,14 @@ ui <- fluidPage (
     "This section will display all of the calculations.",
     tableOutput("results_table"),
     plotOutput("results_plot"),
-    card_footer("Stardew Valley Crop Calculator"),
+    card_footer("Thank you."),
   ),
 )
 )
 
 # Define server logic ----
 server <- function(input, output, session) {
-  observeEvent(input$season, {
-    updateSelectInput(session, 
-                      "crops", 
-                      choices = crop_list[[input$season]])
-  })
+  
 }
 
 
