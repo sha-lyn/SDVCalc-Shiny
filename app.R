@@ -2,9 +2,11 @@ library(shiny)
 library(bslib)
 library(bsicons)
 library(shinyWidgets)
+library(dplyr)
+library(tidyr)
 
 # Load crop data
-crop_data <- read.csv("data/SDVCrops.csv")
+source("data_prep.R")
 
 
 # Define UI ----
